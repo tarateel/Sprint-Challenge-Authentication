@@ -2,10 +2,10 @@ const sqlite = {
   client: "sqlite3",
   useNullAsDefault: true,
   migrations: {
-    directory: "./data/migrations",
+    directory: "./database/migrations",
   },
   seeds: {
-    directory: "./data/seeds",
+    directory: "./database/seeds",
   },
 }
 
@@ -13,13 +13,13 @@ module.exports = {
   dev: {
     ...sqlite,
     connection: {
-      filename: "./data/dev.db3",
+      filename: "./database/dev.db3",
     },
   },
   test: {
     ...sqlite,
     connection: {
-      filename: "./data/test.db3",
+      filename: "./database/test.db3",
     },
   },
 }
