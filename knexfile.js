@@ -1,25 +1,28 @@
-const sqlite = {
-  client: "sqlite3",
-  useNullAsDefault: true,
-  migrations: {
-    directory: "./database/migrations",
-  },
-  seeds: {
-    directory: "./database/seeds",
-  },
-}
-
 module.exports = {
   dev: {
-    ...sqlite,
+    client: 'sqlite3',
     connection: {
-      filename: "./database/dev.db3",
+      filename: './database/auth.db3',
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',
     },
   },
   test: {
-    ...sqlite,
+    client: 'sqlite3',
     connection: {
-      filename: "./database/test.db3",
+      filename: './database/test.db3',
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',
     },
   },
-}
+};
