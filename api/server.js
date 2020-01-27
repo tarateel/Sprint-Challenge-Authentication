@@ -15,4 +15,17 @@ server.use(express.json());
 server.use('/api/auth', authRouter);
 server.use('/api/jokes', authenticate, jokesRouter);
 
+server.get('/', (req, res, next) => {
+  res.status(200).json({
+    message: 'Sprint Challenge Authentication'
+  })
+});
+
+server.use((err, req, res, next) => {
+  console.log('Error:', err)
+  res.status(500).json({
+    message: 'Something went wrong...'
+  })
+});
+
 module.exports = server;
