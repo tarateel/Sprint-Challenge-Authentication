@@ -31,10 +31,21 @@ describe('Test suite: add a user, login, get jokes', () => {
       })
   });
 
-  it('should get jokes from the api', () => {
-    return res = supertest(server)
-      .get('/api/jokes')
-      
+  it('should verify user is logged in and get jokes', async () => {
+    return res = await supertest(server)
+      .post('/api/auth/login')
+      .send({
+        username: "testuser",
+        password: "test"
+      })
+      const users = await supertest(server)
+        .get('/api/jokes')
+        .set('Authorization', res.body.token)
+        .then(res => {
+          expect(res.status).toBe(200)
+          expect(res.type).toBe('application/json')
+          expect([res.body]).toBeArray()
+        })
   });
 });
 
