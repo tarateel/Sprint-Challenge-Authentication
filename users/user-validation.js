@@ -1,11 +1,10 @@
 function userValidation() {
-  const user = req.body;
-  if (!user.username) {
+  if (!req.body.username) {
     res.status(400).json({
       err,
       message: 'Username is required.'
     })
-  } else if (!user.password) {
+  } else if (!req.body.password) {
     res.status(400).json({
       err,
       message: 'Password is required.'
@@ -14,3 +13,5 @@ function userValidation() {
     next()
   }
 };
+
+module.exports = userValidation;

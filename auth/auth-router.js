@@ -2,13 +2,12 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const Users = require('../users/users-model');
-// const userValid = require('../users/user-validation');
+// const userValidation = require('../users/user-validation');
 const secrets = require('../config/secrets');
 
 const router = require('express').Router();
 
-
-router.post('/register', async (req, res, next) => {
+router.post('/register',  async (req, res, next) => {
   try {
     const registered = await Users.add(req.body)
 
@@ -48,5 +47,15 @@ router.post('/login', async (req, res, next) => {
   };
 });
 
+router.get('/restricted', async (req, res, next) => {
+  try {
+    res.json({
+      message: 'You are authorized.',
+      userId: req.userId
+    })
+  } catch (err) {
+    next(err)
+  }
+});
 
 module.exports = router
